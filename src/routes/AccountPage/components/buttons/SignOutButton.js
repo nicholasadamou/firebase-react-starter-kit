@@ -1,18 +1,18 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 
-import { Button } from 'carbon-components-react'
+import { Button } from 'carbon-components-react';
 
-import AccountContext from '../../../../contexts/Account/AccountContext'
+import AccountContext from '../../../../contexts/Account/AccountContext';
 
 const SignOutButton = () => {
-  const { handleSignOut } = useContext(AccountContext)
+    const { handleSignOut } = useContext(AccountContext);
 
-  return (
-    <Button kind="primary" onClick={handleSignOut}>
+    return (
+        <Button kind="primary" onClick={handleSignOut}>
             Sign Out
-    </Button>
-  )
-}
+        </Button>
+    );
+};
 
-export default SignOutButton
+export default SignOutButton;

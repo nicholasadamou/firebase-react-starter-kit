@@ -46,6 +46,12 @@ yarn start
 
 ⚠️ Don't forget to modify the contents of `.env`! Take `.env.example` and fill out its contents and rename it to `.env`.
 
+To properly fill out your `.env` file, you must first find your project's configuration in the settings page found on your project's dashboard at the firebase website. There, you'll have access to all the necessary information: secrets, keys, ID's and other details to set up your application. Copy these into the correct variables within `.env`.
+
+The configuration file that contains the necessary information looks like the following image:
+
+![configuration file](https://www.robinwieruch.de/static/9ad3fd77dff966a11ad6a396872edd03/a9a89/firebase-config.webp)
+
 ## License
 
 'firebase-react-starter-kit' is © Nicholas Adamou.

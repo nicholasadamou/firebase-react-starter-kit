@@ -1,5 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-export const AccountContext = React.createContext()
+export const AccountContext = React.createContext();
 
-export default AccountContext
+export default AccountContext;

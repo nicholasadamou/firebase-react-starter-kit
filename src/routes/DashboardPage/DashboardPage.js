@@ -4,44 +4,44 @@ import React, { Component } from 'react';
 import { compose } from 'recompose';
 
 import {
-	withAuthorization,
-	withEmailVerification,
+    withAuthorization,
+    withEmailVerification,
 } from '../../contexts/Session';
 import AccountContext from '../../contexts/Account/AccountContext';
 
 import Loading from '../../components/Loading';
 
 class DashboardPage extends Component {
-	static contextType = AccountContext;
+    static contextType = AccountContext;
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		this.state = {
-			loading: false,
-		};
-	}
+        this.state = {
+            loading: false,
+        };
+    }
 
-	componentWillMount() {
-		const { firebase } = this.props;
-		const { user } = this.context;
-		console.log('👨🏼‍💻 user=', user);
+    componentWillMount() {
+        const { firebase } = this.props;
+        const { user } = this.context;
+        console.log('👨🏼‍💻 user=', user);
 
-		// Enter logic to handle loading state here.
-		// By default loading state is set to false.
-		// If it is required, set it to true in the constructor() and
-		// manually set it to false after the desired logic is handled within
-		// componentWillMount().
-	}
+        // Enter logic to handle loading state here.
+        // By default loading state is set to false.
+        // If it is required, set it to true in the constructor() and
+        // manually set it to false after the desired logic is handled within
+        // componentWillMount().
+    }
 
-	render() {
-		const { loading } = this.state;
+    render() {
+        const { loading } = this.state;
 
-		return <>{loading ? <Loading /> : <></>}</>;
-	}
+        return <>{loading ? <Loading /> : <></>}</>;
+    }
 }
 
 export default compose(
-	withEmailVerification,
-	withAuthorization((authUser) => !!authUser)
+    withEmailVerification,
+    withAuthorization((authUser) => !!authUser)
 )(DashboardPage);
