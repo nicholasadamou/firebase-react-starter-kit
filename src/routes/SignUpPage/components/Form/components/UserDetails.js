@@ -64,7 +64,7 @@ class UserDetails extends Component {
                         error: {
                             error: true,
                             message:
-                                'The email address that was entered is invaild.',
+                                'The email address that was entered is in-valid.',
                         },
                         emailInvalid: true,
                     });
@@ -104,7 +104,7 @@ class UserDetails extends Component {
                     name="email"
                     labelText="Email *"
                     type="email"
-                    placeholder="Stephen.Alt@ibm.com"
+                    placeholder="john.doe@gmail.com"
                     hideLabel={false}
                     invalid={emailInvalid}
                     invalidText={emailInvalidText}

@@ -17,6 +17,7 @@ import {
 import AccountContext from '../../contexts/Account/AccountContext';
 
 import ToggleContent from '../../components/Modal/ToggleContent';
+import MenuBar from '../../components/MenuBar';
 
 import ChangeProfilePictureModal from './components/modals/ChangeProfilePictureModal';
 import ChangeEmailModal from './components/modals/ChangeEmailModal';
@@ -108,7 +109,6 @@ const ProfilePictureWrapper = styled.div`
 
     img {
         width: 100px;
-        border-radius: 100%;
     }
 `;
 
@@ -156,86 +156,94 @@ class AccountPage extends React.Component {
         this.state = {};
     }
 
-    componentWillMount() {}
+    componentDidMount() {
+        const { user, setAccountFromLocalStorage } = this.context;
+
+        setAccountFromLocalStorage(user);
+    }
 
     render() {
         const { account, loading } = this.context;
 
         return (
-            <Wrapper>
-                <h1 style={{ fontSize: 'x-large' }}>Manage Your Profile</h1>
-                <ProfilePictureWrapper>
-                    {loading ? (
-                        <SkeletonPlaceholder style={{ width: '100px' }} />
-                    ) : account.profilePicture !== '' ? (
-                        <img
-                            src={account.profilePicture}
-                            alt="profilePicture"
-                        />
-                    ) : (
-                        ''
-                    )}
-                    <Container>
+            <>
+                <Wrapper>
+                    <h1 style={{ fontSize: 'x-large' }}>Manage Your Profile</h1>
+                    <ProfilePictureWrapper>
                         {loading ? (
-                            <SkeletonText style={{ width: '35%' }} />
+                            <SkeletonPlaceholder style={{ width: '100px' }} />
+                        ) : account.profilePicture !== '' ? (
+                            <img
+                                src={account.profilePicture}
+                                alt="profilePicture"
+                            />
                         ) : (
-                            <p>{account.name}</p>
+                            ''
                         )}
-                        <ToggleContent
-                            toggle={(show) => (
-                                <Button
-                                    kind="secondary"
-                                    className="manage_account_button"
-                                    onClick={show}
-                                >
-                                    Change Profile Picture
-                                </Button>
+                        <Container>
+                            {loading ? (
+                                <SkeletonText style={{ width: '35%' }} />
+                            ) : (
+                                <p>{account.name}</p>
                             )}
-                            content={(hide) => (
-                                <ChangeProfilePictureModal hide={hide} />
-                            )}
-                        />
-                    </Container>
-                </ProfilePictureWrapper>
-                <ChangeNameForm />
-                <ToggleContent
-                    toggle={(show) => (
-                        <Button
-                            kind="secondary"
-                            className="manage_account_button"
-                            onClick={show}
-                        >
-                            Change Email
-                        </Button>
-                    )}
-                    content={(hide) => <ChangeEmailModal hide={hide} />}
-                />
-                <ToggleContent
-                    toggle={(show) => (
-                        <Button
-                            kind="secondary"
-                            className="manage_account_button"
-                            onClick={show}
-                        >
-                            Change Password
-                        </Button>
-                    )}
-                    content={(hide) => <ChangePasswordModal hide={hide} />}
-                />
-                <SignOutButton />
-                <ToggleContent
-                    toggle={(show) => (
-                        <Button
-                            kind="danger"
-                            className="manage_account_button"
-                            onClick={show}
-                        >
-                            Close Account
-                        </Button>
-                    )}
-                    content={(hide) => <CloseAccountModal hide={hide} />}
-                />
-            </Wrapper>
+                            <ToggleContent
+                                toggle={(show) => (
+                                    <Button
+                                        kind="secondary"
+                                        className="manage_account_button"
+                                        onClick={show}
+                                    >
+                                        Change Profile Picture
+                                    </Button>
+                                )}
+                                content={(hide) => (
+                                    <ChangeProfilePictureModal hide={hide} />
+                                )}
+                            />
+                        </Container>
+                    </ProfilePictureWrapper>
+                    <ChangeNameForm />
+                    <ToggleContent
+                        toggle={(show) => (
+                            <Button
+                                kind="secondary"
+                                className="manage_account_button"
+                                onClick={show}
+                            >
+                                Change Email
+                            </Button>
+                        )}
+                        content={(hide) => <ChangeEmailModal hide={hide} />}
+                    />
+                    <ToggleContent
+                        toggle={(show) => (
+                            <Button
+                                kind="secondary"
+                                className="manage_account_button"
+                                onClick={show}
+                            >
+                                Change Password
+                            </Button>
+                        )}
+                        content={(hide) => <ChangePasswordModal hide={hide} />}
+                    />
+                    <SignOutButton />
+                    <ToggleContent
+                        toggle={(show) => (
+                            <Button
+                                kind="danger"
+                                className="manage_account_button"
+                                onClick={show}
+                            >
+                                Close Account
+                            </Button>
+                        )}
+                        content={(hide) => <CloseAccountModal hide={hide} />}
+                    />
+                </Wrapper>
+
+                <MenuBar />
+            </>
         );
     }
 }

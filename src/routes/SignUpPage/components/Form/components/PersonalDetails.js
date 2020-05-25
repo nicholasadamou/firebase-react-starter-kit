@@ -26,11 +26,6 @@ class PersonalDetails extends Component {
             nameInvalidText: '',
             removeImageBtnDisabled: true,
         };
-
-        this.selectProfilePicture = this.selectProfilePicture.bind(this);
-        this.removeprofilePicture = this.removeprofilePicture.bind(this);
-        this.saveAndContinue = this.saveAndContinue.bind(this);
-        this.back = this.back.bind(this);
     }
 
     selectProfilePicture = (e) => {
@@ -73,8 +68,7 @@ class PersonalDetails extends Component {
 
         if (
             account.profilePicture !== undefined &&
-            account.name !== undefined &&
-            account.role !== undefined
+            account.name !== undefined
         ) {
             this.props.nextStep();
         } else {
@@ -82,7 +76,7 @@ class PersonalDetails extends Component {
                 error: {
                     error: true,
                     message:
-                        'Fields, profile-picture, first-name, last-name, and role are required to continue.',
+                        'Fields, profile-picture, first-name and last-name are required to continue.',
                 },
             });
         }
@@ -93,13 +87,16 @@ class PersonalDetails extends Component {
     };
 
     render() {
-        const { setAccount, removeAccountAttributeByKey } = this.context;
+        const {
+            setAccount,
+            removeAccountAttributeByKey,
+            handleSignUp,
+        } = this.context;
         const {
             profilePicture,
             removeImageBtnDisabled,
             nameInvalid,
             nameInvalidText,
-            error,
         } = this.state;
 
         let fileUploader;
@@ -111,7 +108,7 @@ class PersonalDetails extends Component {
                     <img
                         src={profilePicture}
                         alt="profilePicture"
-                        style={{ width: '100px', borderRadius: 100 }}
+                        style={{ width: '200px' }}
                     />
                 )}
                 <FileUploader
@@ -154,7 +151,7 @@ class PersonalDetails extends Component {
                     name="name"
                     labelText="Name *"
                     type="text"
-                    placeholder="Stephen Alt"
+                    placeholder="John Doe"
                     hideLabel={false}
                     invalid={nameInvalid}
                     invalidText={nameInvalidText}
@@ -179,17 +176,17 @@ class PersonalDetails extends Component {
                 />
                 <ActionBar
                     back={this.back}
-                    next={this.saveAndContinue}
+                    next={handleSignUp}
                     backTextLabel="Back"
-                    nextTextLabel="Next"
+                    nextTextLabel="Sign Up"
                 />
 
-                {error.error ? (
+                {this.state.error.error || this.context.error.error ? (
                     <span style={{ lineHeight: 2 }}>
                         <span role="img" aria-label="warning">
                             ⚠️
                         </span>{' '}
-                        {error.message}
+                        {this.state.error.message || this.context.error.message}
                     </span>
                 ) : (
                     ''

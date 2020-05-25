@@ -203,7 +203,7 @@ class ChangePasswordForm extends Component {
                                     message: error.message,
                                 },
                             },
-                            () => console.log('⁉️error=', this.state.error)
+                            () => console.log('❌error=', this.state.error)
                         );
                     });
             })
@@ -215,7 +215,7 @@ class ChangePasswordForm extends Component {
                             message: error.message,
                         },
                     },
-                    () => console.log('⁉️error=', this.state.error)
+                    () => console.log('❌error=', this.state.error)
                 );
             });
     };

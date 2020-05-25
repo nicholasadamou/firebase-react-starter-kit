@@ -174,7 +174,7 @@ class CloseAccountForm extends Component {
                                         },
                                         () =>
                                             console.log(
-                                                '⁉️error=',
+                                                '❌error=',
                                                 this.state.error
                                             )
                                     );
@@ -200,7 +200,7 @@ class CloseAccountForm extends Component {
                                         message: error.message,
                                     },
                                 },
-                                () => console.log('⁉️error=', this.state.error)
+                                () => console.log('❌error=', this.state.error)
                             );
                         });
                 });

@@ -86,7 +86,7 @@ const ForgotPasswordPage = () => {
                 <TextInput
                     id="email"
                     labelText="Email *"
-                    placeholder="Stephen.Alt@ibm.com"
+                    placeholder="john.doe@gmail.com"
                     className="signin__btn"
                     onBlur={(e) => setAccount('email', e)}
                 />

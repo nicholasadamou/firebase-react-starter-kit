@@ -52,6 +52,27 @@ The configuration file that contains the necessary information looks like the fo
 
 ![configuration file](https://www.robinwieruch.de/static/9ad3fd77dff966a11ad6a396872edd03/a9a89/firebase-config.webp)
 
+### Modify the Firebase Realtime Database Rules
+
+Go to your firebase project dashboard and select *Database* under the *Develop* section on the side-bar. Change to the *realtime database* and select *Rules*. Paste the following into the *Edit Rules* form:
+
+```json
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      ".read": true,
+      ".write": false,
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      },
+    },
+  },
+}
+```
+
 ## License
 
 'firebase-react-starter-kit' is © Nicholas Adamou.

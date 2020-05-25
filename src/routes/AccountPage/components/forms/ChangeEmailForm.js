@@ -179,7 +179,7 @@ class ChangeEmailForm extends Component {
                                     message: error.message,
                                 },
                             },
-                            () => console.log('⁉️error=', this.state.error)
+                            () => console.log('❌error=', this.state.error)
                         );
                     });
             })
@@ -191,7 +191,7 @@ class ChangeEmailForm extends Component {
                             message: error.message,
                         },
                     },
-                    () => console.log('⁉️error=', this.state.error)
+                    () => console.log('❌error=', this.state.error)
                 );
             });
     };

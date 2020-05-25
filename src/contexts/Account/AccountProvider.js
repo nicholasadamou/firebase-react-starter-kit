@@ -35,23 +35,6 @@ class AccountProvider extends Component {
         super(props);
 
         this.state = { ...INITIAL_STATE };
-
-        this.handleLogin = this.handleLogin.bind(this);
-        this.handleSignUp = this.handleSignUp.bind(this);
-        this.handleSignOut = this.handleSignOut.bind(this);
-        this.handlePasswordReset = this.handlePasswordReset.bind(this);
-
-        this.setAccount = this.setAccount.bind(this);
-        this.removeAccountAttributeByKey = this.removeAccountAttributeByKey.bind(
-            this
-        );
-
-        this.isAccountValid = this.isAccountValid.bind(this);
-        this.validateEmail = this.validateEmail.bind(this);
-        this.validatePassword = this.validatePassword.bind(this);
-        this.isAuthenticated = this.isAuthenticated.bind(this);
-        this.reauthenticate = this.reauthenticate.bind(this);
-        this.reset = this.reset.bind(this);
     }
 
     reset = () => {
@@ -71,6 +54,20 @@ class AccountProvider extends Component {
         this.setState(
             {
                 account,
+            },
+            () => console.log('👨🏼‍💻 AccountProvider.account=', this.state.account)
+        );
+    };
+
+    setAccountFromLocalStorage = (account) => {
+        this.setState(
+            {
+                account: {
+                    name: account.name,
+                    email: account.email,
+                    profilePicture: account.profilePicture,
+                },
+                loading: false,
             },
             () => console.log('👨🏼‍💻 AccountProvider.account=', this.state.account)
         );
@@ -202,7 +199,7 @@ class AccountProvider extends Component {
                             message: error.message,
                         },
                     },
-                    () => console.log('⁉️error=', this.state.error)
+                    () => console.log('❌error=', this.state.error)
                 );
             });
 
@@ -247,7 +244,7 @@ class AccountProvider extends Component {
                             message: error.message,
                         },
                     },
-                    () => console.log('⁉️error=', this.state.error)
+                    () => console.log('❌error=', this.state.error)
                 );
             });
 
@@ -268,7 +265,7 @@ class AccountProvider extends Component {
                         message: error.message,
                     },
                 },
-                () => console.log('⁉️error=', this.state.error)
+                () => console.log('❌error=', this.state.error)
             );
         });
 
@@ -297,7 +294,6 @@ class AccountProvider extends Component {
 
     isAuthenticated = () => {
         return (
-            this.state.authUser !== undefined &&
             localStorage.getItem('authUser') !== undefined &&
             localStorage.getItem('authUser') !== null
         );
@@ -315,7 +311,7 @@ class AccountProvider extends Component {
         return authUser.reauthenticateWithCredential(credential);
     };
 
-    componentWillMount() {
+    componentDidlMount() {
         let { user } = this.state;
         const { firebase } = this.props;
 
@@ -354,6 +350,7 @@ class AccountProvider extends Component {
                     handleSignUp: this.handleSignUp,
                     handleSignOut: this.handleSignOut,
                     handlePasswordReset: this.handlePasswordReset,
+                    setAccountFromLocalStorage: this.setAccountFromLocalStorage,
                     setAccount: this.setAccount,
                     removeAccountAttributeByKey: this
                         .removeAccountAttributeByKey,

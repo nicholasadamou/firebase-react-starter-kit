@@ -10,6 +10,7 @@ import {
 import AccountContext from '../../contexts/Account/AccountContext';
 
 import Loading from '../../components/Loading';
+import MenuBar from '../../components/MenuBar';
 
 class DashboardPage extends Component {
     static contextType = AccountContext;
@@ -22,10 +23,11 @@ class DashboardPage extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { firebase } = this.props;
-        const { user } = this.context;
-        console.log('👨🏼‍💻 user=', user);
+        const { user, setAccountFromLocalStorage } = this.context;
+
+        setAccountFromLocalStorage(user);
 
         // Enter logic to handle loading state here.
         // By default loading state is set to false.
@@ -37,7 +39,17 @@ class DashboardPage extends Component {
     render() {
         const { loading } = this.state;
 
-        return <>{loading ? <Loading /> : <></>}</>;
+        return (
+            <>
+                {loading ? (
+                    <Loading />
+                ) : (
+                    <>
+                        <MenuBar />
+                    </>
+                )}
+            </>
+        );
     }
 }
 

@@ -30,9 +30,9 @@ const Wrapper = styled.div`
 
     form {
         position: absolute;
-        top: 60%;
+        top: 50%;
         left: 50%;
-        transform: translate(-50%, -60%);
+        transform: translate(-50%, -50%);
 
         width: 50%;
 
@@ -93,7 +93,7 @@ const SignInPage = () => {
                 <TextInput
                     id="email"
                     labelText="Email *"
-                    placeholder="Stephen.Alt@ibm.com"
+                    placeholder="john.doe@gmail.com"
                     className="signin__btn"
                     onBlur={(e) => {
                         if (validateEmail(e.target.value)) {
