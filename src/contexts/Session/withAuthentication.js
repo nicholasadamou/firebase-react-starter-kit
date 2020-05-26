@@ -21,12 +21,10 @@ const withAuthentication = (Component) => {
 
             this.listener = firebase.onAuthUserListener(
                 (authUser) => {
-                    if (typeof authUser !== 'undefined' || authUser !== null) {
-                        localStorage.setItem(
-                            'authUser',
-                            JSON.stringify(authUser)
-                        );
-                    }
+                    localStorage.setItem(
+                        'authUser',
+                        JSON.stringify(authUser)
+                    );
                 },
                 () => {
                     if (localStorage.hasOwnProperty('authUser')) {
