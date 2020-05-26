@@ -1,4 +1,4 @@
-# Firebase React Starter Kit
+# Firebase React Starter Kit [![Build Status](https://travis-ci.org/nicholasadamou/firebase-react-starter-kit.svg?branch=master)](https://travis-ci.org/nicholasadamou/firebase-react-starter-kit)
 
 A starter project for firebase authentication and management in React with styles from the [Carbon Design System](https://www.carbondesignsystem.com/) and the [Material Design System](https://material.io/design/).
 
@@ -54,7 +54,7 @@ The configuration file that contains the necessary information looks like the fo
 
 ### Modify the Firebase Realtime Database Rules
 
-Go to your firebase project dashboard and select *Database* under the *Develop* section on the side-bar. Change to the *realtime database* and select *Rules*. 
+Go to your firebase project dashboard and select *Database* under the *Develop* section on the side-bar. Change to the *realtime database* and select *Rules*.
 
 ⚠️ This step is required because without it we cannot properly access the database and insert or update the necessary data when logging-in, creating an account, or modifying an already existing account.
 
