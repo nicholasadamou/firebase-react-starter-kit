@@ -17,21 +17,19 @@ const withAuthentication = (Component) => {
         componentDidMount() {
             const { firebase } = this.props;
             
-            if (typeof firebase !== 'undefined' || firebase !== null) {
-                this.listener = firebase.onAuthUserListener(
-                    (authUser) => {
-                        if (typeof authUser !== 'undefined' || authUser !== null) {
-                            localStorage.setItem('authUser', JSON.stringify(authUser));
-                        }
-                    },
-                    () => {
-                        if (localStorage.hasOwnProperty('authUser')) {
-                            localStorage.removeItem('authUser');
-                        }
-                        this.setState({ authUser: null });
+            this.listener = firebase.onAuthUserListener(
+                (authUser) => {
+                    if (typeof authUser !== 'undefined' || authUser !== null) {
+                        localStorage.setItem('authUser', JSON.stringify(authUser));
                     }
-                );
-            }
+                },
+                () => {
+                    if (localStorage.hasOwnProperty('authUser')) {
+                        localStorage.removeItem('authUser');
+                    }
+                    this.setState({ authUser: null });
+                }
+            );
         }
 
         componentWillUnmount() {
