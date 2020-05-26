@@ -1,4 +1,4 @@
-# Firebase React Starter Kit
+# Firebase React Starter Kit [![Build Status](https://travis-ci.org/nicholasadamou/firebase-react-starter-kit.svg?branch=master)](https://travis-ci.org/nicholasadamou/firebase-react-starter-kit)
 
 A starter project for firebase authentication and management in React with styles from the [Carbon Design System](https://www.carbondesignsystem.com/) and the [Material Design System](https://material.io/design/).
 
